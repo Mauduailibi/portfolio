@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { LinkArrow } from '@/components/Icons';
 import HireMe from '@/components/HireMe';
 import TransitionEffect from '@/components/TransitionEffect';
+import Script from 'next/script';
 
 export default function Home() {
   return (
@@ -14,6 +15,10 @@ export default function Home() {
       <Head>
         <title>Mauricio Duailibi Neto</title>
         <meta name="description" content="Mauricio Duailibi Neto" />
+        {/* Event snippet for Contato conversion page*/}
+        <Script>
+          {`gtag('event', 'conversion', {'send_to': '${process.env.GA_MEASUREMENT_ID}/${process.env.GA_MEASUREMENT_EVENT}'});`}
+        </Script>
       </Head>
       <TransitionEffect />
       <main className="flex items-center text-dark w-full min-h-screen dark:text-light lg:items-start">
