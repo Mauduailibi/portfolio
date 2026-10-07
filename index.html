@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mauricio Duailibi Neto — Full-Stack Software Engineer</title>
+    <meta
+      name="description"
+      content="Full-Stack Software Engineer com 7 anos de experiência construindo plataformas web, mobile e backend em produção — Python, TypeScript/React, Java e Cloud."
+    />
+    <meta name="author" content="Mauricio Duailibi Neto" />
+    <meta name="theme-color" content="#0c0c0b" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate icon" href="/favicon.ico" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Mauricio Duailibi Neto — Full-Stack Software Engineer" />
+    <meta
+      property="og:description"
+      content="7 anos construindo software em produção: plataformas financeiras, SaaS, sites e software científico."
+    />
+    <meta property="og:image" content="/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script>
+      // Resolve idioma e tema antes do primeiro paint para evitar flash.
+      (function () {
+        var d = document.documentElement;
+        var lang;
+        try {
+          var q = new URLSearchParams(location.search).get('lang');
+          lang = q || localStorage.getItem('lang');
+        } catch (e) {}
+        if (lang !== 'pt' && lang !== 'en') {
+          var langs = navigator.languages || [navigator.language || 'en'];
+          lang = String(langs[0] || 'en').toLowerCase().indexOf('pt') === 0 ? 'pt' : 'en';
+        }
+        d.lang = lang === 'pt' ? 'pt-BR' : 'en';
+        d.dataset.lang = lang;
+
+        var theme;
+        try {
+          theme = localStorage.getItem('theme');
+        } catch (e) {}
+        if (theme !== 'light' && theme !== 'dark') {
+          theme = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        }
+        d.dataset.theme = theme;
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>
+      Mauricio Duailibi Neto — Full-Stack Software Engineer · maudneto@gmail.com
+    </noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

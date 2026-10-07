@@ -1,29 +1,36 @@
 {
-  "name": "portifolio",
-  "version": "0.1.0",
+  "name": "mauricio-portfolio",
   "private": true,
+  "version": "2.0.0",
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "oxlint",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "eslint-config-next": "13.2.4",
-    "framer-motion": "^10.6.0",
-    "next": "13.2.4",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-gtm-module": "^2.0.11"
+    "@fontsource-variable/fraunces": "^5.3.0",
+    "@fontsource-variable/inter-tight": "^5.3.0",
+    "@fontsource-variable/jetbrains-mono": "^5.3.0",
+    "lucide-react": "^1.52.0",
+    "motion": "^14.0.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.14",
-    "eslint": "^8.39.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-import": "^2.27.5",
-    "postcss": "^8.4.21",
-    "prettier": "^2.8.8",
-    "tailwindcss": "^3.3.1"
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^26.6.4",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "oxlint": "^1.87.0",
+    "tailwindcss": "^4.3.3",
+    "typescript": "~6.0.2",
+    "vite": "^8.3.3"
+  },
+  "packageManager": "pnpm@11.21.0",
+  "engines": {
+    "node": ">=20.19"
   }
 }

@@ -1,0 +1,164 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/inter-tight';
+@import '@fontsource-variable/fraunces/opsz-italic.css';
+@import '@fontsource-variable/jetbrains-mono';
+
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+:root {
+  --bg: #f6f5f0;
+  --bg-soft: #efeee7;
+  --surface: #ffffff;
+  --fg: #141413;
+  --muted: #62625a;
+  --faint: #9b9b92;
+  --line: rgb(20 20 19 / 0.09);
+  --line-strong: rgb(20 20 19 / 0.16);
+  --accent: #c8f53a;
+  --accent-ink: #4b6900;
+  --on-accent: #141413;
+  --glow: rgb(160 210 20 / 0.18);
+  color-scheme: light;
+}
+
+[data-theme='dark'] {
+  --bg: #0c0c0b;
+  --bg-soft: #121211;
+  --surface: #171715;
+  --fg: #eeede7;
+  --muted: #a1a198;
+  --faint: #6b6b64;
+  --line: rgb(238 237 231 / 0.08);
+  --line-strong: rgb(238 237 231 / 0.16);
+  --accent: #d4ff4f;
+  --accent-ink: #d4ff4f;
+  --on-accent: #0c0c0b;
+  --glow: rgb(212 255 79 / 0.12);
+  color-scheme: dark;
+}
+
+@theme {
+  --font-sans: 'Inter Tight Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Fraunces Variable', ui-serif, Georgia, serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
+
+  --color-bg: var(--bg);
+  --color-bg-soft: var(--bg-soft);
+  --color-surface: var(--surface);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-on-accent: var(--on-accent);
+
+  --animate-spin-slow: spin 18s linear infinite;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    overflow-x: clip;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    font-feature-settings: 'ss01', 'cv11';
+    -webkit-font-smoothing: antialiased;
+    transition:
+      background-color 0.4s ease,
+      color 0.4s ease;
+    overflow-x: clip;
+  }
+  ::selection {
+    background: var(--accent);
+    color: var(--on-accent);
+  }
+  :focus-visible {
+    outline: 2px solid var(--accent-ink);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  section[id] {
+    scroll-margin-top: 80px;
+  }
+}
+
+@layer components {
+  .container-x {
+    width: 100%;
+    max-width: 1240px;
+    margin-inline: auto;
+    padding-inline: 20px;
+  }
+  @media (min-width: 768px) {
+    .container-x {
+      padding-inline: 32px;
+    }
+  }
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .grain {
+    pointer-events: none;
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  [data-theme='dark'] .grain {
+    opacity: 0.06;
+  }
+  .grid-bg {
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 30%, transparent 75%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Screenshot que rola até o fim no hover (desktop) ou com o dedo (touch). */
+.scroll-shot img {
+  transform: translateY(0);
+  transition:
+    top 7s cubic-bezier(0.45, 0, 0.55, 1),
+    transform 7s cubic-bezier(0.45, 0, 0.55, 1);
+}
+@media (hover: hover) {
+  .group:hover .scroll-shot img {
+    top: 100%;
+    transform: translateY(-100%);
+  }
+}
+@media (hover: none) {
+  .scroll-shot {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  .scroll-shot img {
+    position: static;
+  }
+}
